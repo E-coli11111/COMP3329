@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
+<<<<<<< HEAD
   productGUID: 7121b0e1ec46cf642bbcc0195b41bb70
+=======
+  productGUID: fd5bbda61ff57c849a97619c96295184
+>>>>>>> 9ccb65f9e9f732d2c59fb313c82f8c21dd8a952c
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -704,10 +708,17 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
+<<<<<<< HEAD
   cloudProjectId: 0a7190de-85d6-4332-a550-cd74f393b4b1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Shield to Shield 2024-03-26_16-15-56
+=======
+  cloudProjectId: 3908e5f2-d1ff-4ce1-b28f-ce265da5d3be
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: Shield to Shield
+>>>>>>> 9ccb65f9e9f732d2c59fb313c82f8c21dd8a952c
   organizationId: qlqk
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

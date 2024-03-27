@@ -21,4 +21,13 @@ public class Grenade : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D obj) {
+        Debug.Log("Collided with prop");
+        if(obj.name.Contains("prop")) {
+            Debug.Log("Clearing prop");
+            Destroy(obj.gameObject);
+            // Destroy(gameObject);
+        }
+    }
 }

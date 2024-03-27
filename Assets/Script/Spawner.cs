@@ -6,9 +6,9 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject[] props;
-    public int x_bound = 10;
-    public int y_bound = 10;
-    public int freq = 5;
+    public static int x_bound = 10;
+    public static int y_bound = 5;
+    public static int freq = 5;
     
     // Start is called before the first frame update
     void Start()
@@ -33,11 +33,15 @@ public class Spawner : MonoBehaviour
         if (Random.value > p){
             return;
         }
-
-        Debug.Log(props.Length);
-        Vector2 spawnPoint = new Vector2(Random.Range(-x_bound, x_bound), Random.Range(-y_bound, y_bound));
-
-
+        float x = Random.Range(-x_bound, x_bound);
+        float y = Random.Range(-y_bound, y_bound);
+        Vector2 spawnPoint = new Vector2(x, y);
+        Debug.Log("Spawn point");
+        Debug.Log(x_bound);
+        Debug.Log(y_bound);
+        Debug.Log(x);
+        Debug.Log(y);
+        Debug.Log(spawnPoint);
         GameObject prop = props[Random.Range(0, props.Length)];
         Instantiate(prop, spawnPoint, Quaternion.identity);
 

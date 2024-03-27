@@ -245,9 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   props: []
-  x_bound: 10
-  y_bound: 10
-  freq: 5
 --- !u!4 &217740818
 Transform:
   m_ObjectHideFlags: 0

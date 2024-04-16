@@ -22,10 +22,11 @@ public class Wall : MonoBehaviour
         if (shrink) {
             float t = (Time.time - shrinkstart) ;
             if (t < shrinkDuration) {
-                transform.localScale = new Vector3(1, 1.5f - 0.5f * t, 1);
+                transform.localScale = new Vector3(1, 1.2f - 0.5f * t, 1);
             } else if (t > shrinkDuration + effecttime && t < shrinkDuration + effecttime + restoreduration) {
-                transform.localScale = new Vector3(1, 1 + (t - shrinkDuration - effecttime), 1);
+                transform.localScale = new Vector3(1, 0.7f + 0.5f*(t - shrinkDuration - effecttime), 1);
             } else if (t > shrinkDuration + effecttime + restoreduration) {
+                transform.localScale = new Vector3(1, 1.2f, 1);
                 shrink = false;
             }
         }

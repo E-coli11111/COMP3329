@@ -9,11 +9,12 @@ public class Wall : MonoBehaviour
     public float shrinkDuration = 1f;
     public float effecttime = 1f;
     public float restoreduration = 1f;
+    Vector3 originalScale;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -22,11 +23,11 @@ public class Wall : MonoBehaviour
         if (shrink) {
             float t = (Time.time - shrinkstart) ;
             if (t < shrinkDuration) {
-                transform.localScale = new Vector3(1, 1.2f - 0.5f * t, 1);
+                transform.localScale = new Vector3(originalScale.x, (1 - 0.2f * t / shrinkDuration) * originalScale.y, originalScale.z);
             } else if (t > shrinkDuration + effecttime && t < shrinkDuration + effecttime + restoreduration) {
-                transform.localScale = new Vector3(1, 0.7f + 0.5f*(t - shrinkDuration - effecttime), 1);
+                transform.localScale = new Vector3(originalScale.x, (0.8f + 0.2f * (t - shrinkDuration - effecttime) / restoreduration) * originalScale.y, originalScale.z);    //(0.8f + 0.2f * (t - shrinkDuration - effecttime) / restoreduration) * originalScale;
             } else if (t > shrinkDuration + effecttime + restoreduration) {
-                transform.localScale = new Vector3(1, 1.2f, 1);
+                transform.localScale = originalScale;
                 shrink = false;
             }
         }

@@ -8,11 +8,13 @@ public class GameController : MonoBehaviour
 {
     public Canvas pauseMenu;
     public Canvas countDownMenu;
+    public Canvas main;
     // public Text countDownText;
 
     // Start is called before the first frame update
     void Start()
     {
+        main.gameObject.SetActive(true);
         Time.timeScale = 0f;
         StartCoroutine(CountdownCoroutine());
         // pauseMenu.gameObject.SetActive(false);

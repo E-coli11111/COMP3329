@@ -5,9 +5,11 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     float speed = 5;
+    public GameObject controller;
     public Rigidbody2D rb;
     public Vector2 v;
     public Vector2 acceleration = new Vector2(0, 0);
+    public int last = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class Grenade : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D obj) {
-        // Debug.Log("Collided with prop1");
+        Debug.Log(obj.name);
         if(obj.name.Contains("prop")) {
             // Debug.Log("Clearing prop");
             Destroy(obj.gameObject);
@@ -32,17 +34,18 @@ public class Grenade : MonoBehaviour
         }
     }
 
-    // void OnCollisionEnter2D(Collision2D obj) {
-    //     Debug.Log("Collided with "+obj.gameObject.name);
-    //     if(obj.gameObject.name.Contains("player")) {
-
-    //         foreach(ContactPoint2D contact in obj.contacts) {
-    //             obj.gameObject.GetComponent<Rigidbody2D>().AddForce(contact.normalImpulse, ForceMode2D.Impulse);
-    //         }
-
-            
-    //     }
-    // }
+    void OnCollisionEnter2D(Collision2D obj) {
+        Debug.Log("Collided with "+obj.gameObject.name);
+        if(obj.gameObject.name.Contains("Boundary1")){
+            Debug.Log("Collided with Boundary1");
+            GameController gc = controller.GetComponent<GameController>();
+            gc.time = gc.time - 2;
+        }else if(obj.gameObject.name.Contains("player l")){
+            last = 1;
+        }else if(obj.gameObject.name.Contains("player r")){
+            last = 2;
+        }
+    }
 
     // void OnCollisionStay2D(Collision2D obj) {
     //     // Debug.Log("Collided with "+obj.gameObject.name);

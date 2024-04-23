@@ -6,9 +6,13 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject grenade;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
+    public float time = 60;
+    public TextMeshProUGUI timeText;
+    private float b;
     // public Text countDownText;
 
     // Start is called before the first frame update
@@ -19,11 +23,19 @@ public class GameController : MonoBehaviour
         StartCoroutine(CountdownCoroutine());
         // pauseMenu.gameObject.SetActive(false);
         // countDownMenu.gameObject.SetActive(false);
+        Vector3 p = grenade.GetComponent<Transform>().position;
+        b = p.x;
     }
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
             OnPause();
+        }
+        time -= Time.deltaTime;
+        timeText.text = "Time: " + time.ToString("F2");
+
+        if(time <= 0){
+            OnWin();
         }
     }
 
@@ -31,16 +43,30 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
         pauseMenu.gameObject.SetActive(true);
     }
+
     public void OnResume(){
         Debug.Log("Resume");
         StartCoroutine(CountdownCoroutine());
     }
+    
     public void OnRestart(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         StartCoroutine(CountdownCoroutine());
     }
+    
     public void OnExit(){
         Application.Quit();
+    }
+    
+    public void OnWin(){
+        Vector3 p = grenade.GetComponent<Transform>().position;
+        Debug.Log(p);
+        if(p.x < b){
+            timeText.text = "Player 2 wins";
+        } else {
+            timeText.text = "Player 1 wins";
+        }
+        Time.timeScale = 0;
     }
 
     private IEnumerator CountdownCoroutine()

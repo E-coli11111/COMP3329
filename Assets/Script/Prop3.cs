@@ -22,14 +22,15 @@ public class Prop3 : MonoBehaviour
     void OnTriggerEnter2D(Collider2D obj){
        
         if(obj.name.Contains("Grenade")) {
-            playerL = GameObject.Find("player_l");
-            playerR = GameObject.Find("player_r");
-            
-            // Wall w1 = wall1.GetComponent<Wall>();
-            // Wall w2 = wall2.GetComponent<Wall>();
-
-            // w1.StartShrink();
-            // w2.StartShrink();
+            Debug.Log(1);
+            playerL = GameObject.Find("player l");
+            playerR = GameObject.Find("player r");
+            Debug.Log(playerL.GetComponentsInChildren<Shield>());
+            if(obj.GetComponent<Grenade>().last == 1){
+                playerL.GetComponentInChildren<Shield>().OnExpand();
+            }else{
+                playerR.GetComponentInChildren<Shield>().OnExpand();
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ public class Grenade : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-speed, 0);
-
+        
     }
 
     // Update is called once per frame

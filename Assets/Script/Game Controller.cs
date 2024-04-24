@@ -7,23 +7,20 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public GameObject grenade;
-    public Canvas startMenu;
+    // public Canvas startMenu;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
     public float time = 60;
     public TextMeshProUGUI timeText;
     private float b;
+    private int state = 1; // 0: start, 1: main, 2: pause, 3: countdown
     // public Text countDownText;
 
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0f;
-        main.gameObject.SetActive(false);
-        pauseMenu.gameObject.SetActive(false);
-        countDownMenu.gameObject.SetActive(false);
-        startMenu.gameObject.SetActive(true);
+        OnStart();
     }
 
     void Update(){
@@ -38,17 +35,23 @@ public class GameController : MonoBehaviour
         }
     }
     public void OnStart(){
-        startMenu.gameObject.SetActive(false);
+        // startMenu.gameObject.SetActive(false);
         main.gameObject.SetActive(true);
+        pauseMenu.gameObject.SetActive(false);
+        countDownMenu.gameObject.SetActive(false);
+
         Time.timeScale = 0f;
         StartCoroutine(CountdownCoroutine());
-        // pauseMenu.gameObject.SetActive(false);
-        // countDownMenu.gameObject.SetActive(false);
+
         Vector3 p = grenade.GetComponent<Transform>().position;
         b = p.x;
     }
 
     public void OnPause(){
+        if(state != 1){
+            return;
+        }
+        state = 2;
         Time.timeScale = 0;
         pauseMenu.gameObject.SetActive(true);
     }
@@ -61,6 +64,7 @@ public class GameController : MonoBehaviour
     public void OnRestart(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         StartCoroutine(CountdownCoroutine());
+        state = 1;
     }
     
     public void OnExit(){
@@ -80,6 +84,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator CountdownCoroutine()
     {
+        state = 3;
         pauseMenu.gameObject.SetActive(false);
         TextMeshProUGUI countDownText = countDownMenu.GetComponentInChildren<TextMeshProUGUI>();
         Debug.Log(countDownText);
@@ -99,5 +104,6 @@ public class GameController : MonoBehaviour
 
         countDownMenu.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        state = 1;
     }
 }

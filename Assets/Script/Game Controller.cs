@@ -7,6 +7,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public GameObject grenade;
+    public Canvas startMenu;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
@@ -18,13 +19,11 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        main.gameObject.SetActive(true);
         Time.timeScale = 0f;
-        StartCoroutine(CountdownCoroutine());
-        // pauseMenu.gameObject.SetActive(false);
-        // countDownMenu.gameObject.SetActive(false);
-        Vector3 p = grenade.GetComponent<Transform>().position;
-        b = p.x;
+        main.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
+        countDownMenu.gameObject.SetActive(false);
+        startMenu.gameObject.SetActive(true);
     }
 
     void Update(){
@@ -38,6 +37,16 @@ public class GameController : MonoBehaviour
             OnWin();
         }
     }
+    public void OnStart(){
+        startMenu.gameObject.SetActive(false);
+        main.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        StartCoroutine(CountdownCoroutine());
+        // pauseMenu.gameObject.SetActive(false);
+        // countDownMenu.gameObject.SetActive(false);
+        Vector3 p = grenade.GetComponent<Transform>().position;
+        b = p.x;
+    }
 
     public void OnPause(){
         Time.timeScale = 0;
@@ -50,7 +59,7 @@ public class GameController : MonoBehaviour
     }
     
     public void OnRestart(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         StartCoroutine(CountdownCoroutine());
     }
     

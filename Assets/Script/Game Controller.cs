@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeText.text = "Time: " + time.ToString("F2");
         OnStart();
     }
 

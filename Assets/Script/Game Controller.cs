@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject grenade;
     // public Canvas startMenu;
+    public AudioSource bgm;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
@@ -42,7 +43,7 @@ public class GameController : MonoBehaviour
         countDownMenu.gameObject.SetActive(false);
 
         Time.timeScale = 0f;
-        StartCoroutine(CountdownCoroutine());
+        StartCoroutine(StartGameRoutine());
 
         Vector3 p = grenade.GetComponent<Transform>().position;
         b = p.x;
@@ -81,6 +82,11 @@ public class GameController : MonoBehaviour
             timeText.text = "Player 1 wins";
         }
         Time.timeScale = 0;
+    }
+
+    private IEnumerator StartGameRoutine(){
+        yield return CountdownCoroutine();
+        bgm.Play();
     }
 
     private IEnumerator CountdownCoroutine()

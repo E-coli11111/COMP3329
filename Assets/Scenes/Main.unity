@@ -1770,7 +1770,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e8bd5e14b04bc224391648d2cf8cfe6f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3a4fb61ed32f21c4d8a4e796b21a7d11, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3088,6 +3088,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
   m_PrefabInstance: {fileID: 439644595764599162}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2004862111
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004862099}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3910b477e51a0734da97981a39a76362, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2058959834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,17 +3359,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grenade
       objectReference: {fileID: 0}
+    - target: {fileID: 898225039960284347, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e79ab09f8c5ca641bd9964534269602, type: 3}
+    - target: {fileID: 3773497244209865702, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
+      propertyPath: m_Radius
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 75.280464
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 72.38104
+      value: 384.59406
       objectReference: {fileID: 0}
     - target: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 45.4
+      value: 241.23126
       objectReference: {fileID: 0}
     - target: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3390,6 +3419,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4479661097991539070, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4903290933126128993, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       propertyPath: controller
       value: 
@@ -3405,6 +3438,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 425685304604167705, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2004862105}
+    - targetCorrespondingSourceObject: {fileID: 425685304604167705, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2004862111}
   m_SourcePrefab: {fileID: 100100000, guid: 55c48e725a954334ea15bf47fc61a36d, type: 3}
 --- !u!1001 &3687328159230216579
 PrefabInstance:
@@ -3428,7 +3464,11 @@ PrefabInstance:
       objectReference: {fileID: 1905200741}
     - target: {fileID: 8536568550092766729, guid: e11baf99c68c8b54ba2fd0dffd69d73d, type: 3}
       propertyPath: time
-      value: 60
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536568550092766729, guid: e11baf99c68c8b54ba2fd0dffd69d73d, type: 3}
+      propertyPath: explode
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8536568550092766729, guid: e11baf99c68c8b54ba2fd0dffd69d73d, type: 3}
       propertyPath: grenade

@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using TMPro;
 
 public class GameController : MonoBehaviour
 {
     public GameObject grenade;
-    // public Canvas startMenu;
+    // public GameObject explode;
     public AudioSource bgm;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
-    public float time = 60;
+    public float time = 10;
     public TextMeshProUGUI timeText;
     private float b;
     private int state = 1; // 0: start, 1: main, 2: pause, 3: countdown
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         timeText.text = "Time: " + time.ToString("F2");
+        grenade.GetComponent<Animator>().SetBool("end", false);
         OnStart();
     }
 
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour
         if(state != 1){
             return;
         }
+        bgm.Pause();
         state = 2;
         Time.timeScale = 0;
         pauseMenu.gameObject.SetActive(true);
@@ -60,12 +63,12 @@ public class GameController : MonoBehaviour
 
     public void OnResume(){
         Debug.Log("Resume");
-        StartCoroutine(CountdownCoroutine());
+        StartCoroutine(StartGameRoutine());
     }
     
     public void OnRestart(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-        StartCoroutine(CountdownCoroutine());
+        OnStart();
         state = 1;
     }
     
@@ -81,7 +84,9 @@ public class GameController : MonoBehaviour
         } else {
             timeText.text = "Player 1 wins";
         }
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
+        // explode.GetComponent<Animator>().Play();
+        grenade.GetComponent<Animator>().SetTrigger("End");
     }
 
     private IEnumerator StartGameRoutine(){

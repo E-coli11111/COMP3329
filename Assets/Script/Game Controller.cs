@@ -10,10 +10,11 @@ public class GameController : MonoBehaviour
     public GameObject grenade;
     // public GameObject explode;
     public AudioSource bgm;
+    public Canvas endMenu;
     public Canvas pauseMenu;
     public Canvas countDownMenu;
     public Canvas main;
-    public float time = 10;
+    public float time = 70;
     public TextMeshProUGUI timeText;
     private float b;
     private int state = 1; // 0: start, 1: main, 2: pause, 3: countdown
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour
         main.gameObject.SetActive(true);
         pauseMenu.gameObject.SetActive(false);
         countDownMenu.gameObject.SetActive(false);
+        endMenu.gameObject.SetActive(false);
 
         Time.timeScale = 0f;
         StartCoroutine(StartGameRoutine());
@@ -77,8 +79,9 @@ public class GameController : MonoBehaviour
     }
     
     public void OnWin(){
+        state = 2;
         Vector3 p = grenade.GetComponent<Transform>().position;
-        Debug.Log(p);
+        // Debug.Log(p);
         if(p.x < b){
             timeText.text = "Player 2 wins";
         } else {
@@ -86,12 +89,22 @@ public class GameController : MonoBehaviour
         }
         // Time.timeScale = 0;
         // explode.GetComponent<Animator>().Play();
-        grenade.GetComponent<Animator>().SetTrigger("End");
+        grenade.GetComponent<Grenade>().Explode();
+        GameObject.Find("Spawner").GetComponent<Spawner>().clearProps();
+        Invoke("invokeEndMenu", 2f);
+    }
+
+    public void OnReturnToMenu(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     private IEnumerator StartGameRoutine(){
         yield return CountdownCoroutine();
         bgm.Play();
+    }
+
+    void invokeEndMenu(){
+        endMenu.gameObject.SetActive(true);
     }
 
     private IEnumerator CountdownCoroutine()
@@ -117,5 +130,10 @@ public class GameController : MonoBehaviour
         countDownMenu.gameObject.SetActive(false);
         Time.timeScale = 1f;
         state = 1;
+    }
+
+    public void End(){
+        Time.timeScale = 0;
+        // grenade.GetComponent<Animator>().SetBool("end", true);
     }
 }

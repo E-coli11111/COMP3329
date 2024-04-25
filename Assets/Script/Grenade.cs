@@ -10,6 +10,7 @@ public class Grenade : MonoBehaviour
     public Vector2 v;
     public Vector2 acceleration = new Vector2(0, 0);
     public int last = 1;
+    public bool isExploding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +94,25 @@ public class Grenade : MonoBehaviour
         yield return new WaitForSeconds(duration);
         // Debug.Log("Updating acceleration: Resetting");
         UpdateAcceleration(-a);
+    }
+
+    public void Explode() {
+        if(isExploding) return;
+        isExploding = true;
+        rb.velocity = new Vector2(0, 0);
+
+        this.gameObject.GetComponent<Animator>().SetTrigger("End");
+        this.gameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
+    }
+
+    public void PlayExplosionSound() {
+        Debug.Log("Playing explosion sound");
+        Debug.Log(this.gameObject.GetComponent<AudioSource>());
+        this.gameObject.GetComponent<AudioSource>().Play();
+    }
+
+    public void Test() {
+        Debug.Log("Test");
     }
 
     

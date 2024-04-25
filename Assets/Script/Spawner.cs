@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject[] props;
-    public static int x_bound = 6;
-    public static int y_bound = 4;
+    public static float x_bound = 6f;
+    public static float y_bound = 3f;
     public static int freq = 5;
     
     // Start is called before the first frame update
@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
         float x = Random.Range(-x_bound, x_bound);
         float y = Random.Range(-y_bound, y_bound);
         Vector2 spawnPoint = new Vector2(x, y);
-        if(x < 0.5f && x > -0.5f){
+        if(x < 1f && x > -1f){
             Debug.Log("Too close to player");
             Debug.Log(spawnPoint);
             return;

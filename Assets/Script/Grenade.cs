@@ -102,7 +102,7 @@ public class Grenade : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
 
         this.gameObject.GetComponent<Animator>().SetTrigger("End");
-        this.gameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
+        // this.gameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
     }
 
     public void PlayExplosionSound() {

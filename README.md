@@ -1,7 +1,7 @@
 ## How to play
 Player 1: Use `W` and `S` to control  
 Player 2: Use `Up` and `Down` to control  
-Press `P` to pause the game  
+Press `Esc` to pause the game  
 
 ## Rule
 When the time counts down to 0, the grenade would explode and result in the failure of the explosion side player. Players can move their 
